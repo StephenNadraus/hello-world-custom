@@ -4,11 +4,18 @@
 
 replicaCount: 1
 
-image:
-  repository: nginx
-  pullPolicy: IfNotPresent
-  # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+imagePullPolicy: IfNotPresent
+
+# Used by both the Deployment template and Rafty's image inventory.
+dependencies:
+  containerImages:
+    nginx:
+      standard:
+        registry: docker.io
+        repository: library
+        name: nginx
+        tag: "1.16.0"
+        digest: "sha256:3e373fd5b8d41baeddc24be311c5c6929425c04cabf893b874ac09b72a798010"
 
 nameOverride: ""
 fullnameOverride: ""
